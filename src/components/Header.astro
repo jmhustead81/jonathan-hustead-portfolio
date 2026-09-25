@@ -48,7 +48,7 @@ const nav = [
     z-index: 50;
     height: var(--nav-h);
     backdrop-filter: blur(14px);
-    background: rgba(231, 237, 244, 0.82);
+    background: rgba(16, 19, 24, 0.78);
     border-bottom: 1px solid transparent;
     transition:
       border-color 200ms var(--ease),
@@ -57,7 +57,7 @@ const nav = [
 
   .site-header.is-scrolled {
     border-bottom-color: var(--line);
-    background: rgba(244, 247, 251, 0.92);
+    background: rgba(16, 19, 24, 0.92);
   }
 
   .site-header__inner {
@@ -90,8 +90,8 @@ const nav = [
   .site-header__nav a {
     text-decoration: none;
     font-size: 0.92rem;
-    font-weight: 550;
-    color: var(--ink-soft);
+    font-weight: 500;
+    color: var(--muted);
   }
 
   .site-header__nav a:hover {
@@ -109,7 +109,7 @@ const nav = [
     height: 2.75rem;
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    background: rgba(255, 255, 255, 0.55);
+    background: var(--surface);
     padding: 0;
     cursor: pointer;
   }
@@ -139,7 +139,7 @@ const nav = [
       align-items: stretch;
       gap: 1rem;
       padding: 1rem;
-      background: var(--paper-elevated);
+      background: var(--bg-elevated);
       border: 1px solid var(--line);
       border-radius: calc(var(--radius) + 0.15rem);
       box-shadow: var(--shadow-soft);

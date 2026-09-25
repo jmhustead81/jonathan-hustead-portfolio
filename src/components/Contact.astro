@@ -1,0 +1,158 @@
+---
+const accessKey =
+  import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? 'a78a137a-df4b-4b03-8e67-4c48ba2c4d5e';
+---
+
+<section class="section contact" id="contact" aria-labelledby="contact-title">
+  <div class="container contact__layout">
+    <div class="section-header reveal">
+      <p class="section-kicker">Contact</p>
+      <h2 class="section-title" id="contact-title">Let’s talk about your next platform.</h2>
+      <p class="section-lede">
+        Send a note about architecture, UI systems, or collaboration. I typically respond within a few business days.
+      </p>
+    </div>
+
+    <form class="contact__form reveal" action="https://api.web3forms.com/submit" method="POST" data-contact-form>
+      <input type="hidden" name="access_key" value={accessKey} />
+      <input type="hidden" name="subject" value="Portfolio contact — jonathanhustead.com" />
+      <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
+      <input type="hidden" name="from_name" value="Jonathan Hustead Portfolio" />
+
+      <div class="field">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" autocomplete="name" required />
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" required />
+      </div>
+
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="6" required></textarea>
+      </div>
+
+      <div class="contact__actions">
+        <button class="button button--primary" type="submit" data-submit>Send message</button>
+        <button class="button button--ghost" type="reset">Clear</button>
+      </div>
+
+      <p class="contact__status" data-form-status role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<script>
+  const form = document.querySelector('[data-contact-form]');
+  const status = document.querySelector('[data-form-status]');
+  const submit = document.querySelector('[data-submit]');
+
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!(form instanceof HTMLFormElement)) return;
+
+    status.textContent = 'Sending…';
+    submit?.setAttribute('disabled', 'true');
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || 'Unable to send message.');
+      }
+
+      form.reset();
+      status.textContent = 'Thanks — your message is on its way.';
+    } catch (error) {
+      status.textContent =
+        error instanceof Error ? error.message : 'Something went wrong. Please try again.';
+    } finally {
+      submit?.removeAttribute('disabled');
+    }
+  });
+</script>
+
+<style>
+  .contact__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+
+  .contact__layout :global(.section-header) {
+    margin-bottom: 0;
+  }
+
+  .contact__form {
+    display: grid;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: rgba(244, 247, 251, 0.8);
+    border: 1px solid var(--line);
+    border-radius: calc(var(--radius) + 0.15rem);
+  }
+
+  .field {
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  label {
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    font: inherit;
+    color: var(--ink);
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 0.8rem 0.9rem;
+  }
+
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 9rem;
+  }
+
+  .contact__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+  }
+
+  .contact__status {
+    min-height: 1.4em;
+    color: var(--accent-deep);
+    font-weight: 600;
+  }
+
+  button:disabled {
+    opacity: 0.65;
+    cursor: wait;
+  }
+
+  @media (max-width: 860px) {
+    .contact__layout {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

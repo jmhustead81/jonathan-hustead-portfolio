@@ -1,0 +1,253 @@
+---
+import { site } from '../data/site';
+---
+
+<section class="section work" id="work" aria-labelledby="work-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-kicker">Selected work</p>
+      <h2 class="section-title" id="work-title">Interfaces shipped across finance, healthcare, and enterprise.</h2>
+      <p class="section-lede">
+        A cross-section of product surfaces I have designed and engineered—from admin platforms and status systems to marketing sites and internal tools.
+      </p>
+    </div>
+
+    <ul class="work__grid" data-project-grid>
+      {
+        site.projects.map((project, index) => (
+          <li class="reveal" style={`transition-delay: ${Math.min(index * 40, 280)}ms`}>
+            <button
+              type="button"
+              class="work__item"
+              data-project-trigger
+              data-index={index}
+              aria-haspopup="dialog"
+            >
+              <img src={project.image} alt="" width="640" height="400" loading="lazy" decoding="async" />
+              <span class="work__caption">
+                <span class="work__title">{project.title}</span>
+                <span class="work__org">{project.org}</span>
+              </span>
+            </button>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <div class="lightbox" data-lightbox hidden>
+    <div class="lightbox__backdrop" data-lightbox-close tabindex="-1"></div>
+    <div
+      class="lightbox__dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="lightbox-title"
+      tabindex="-1"
+      data-lightbox-dialog
+    >
+      <button type="button" class="lightbox__close" data-lightbox-close aria-label="Close project preview">
+        Close
+      </button>
+      <img data-lightbox-image alt="" width="1280" height="800" />
+      <div class="lightbox__meta">
+        <h3 id="lightbox-title" data-lightbox-title></h3>
+        <p data-lightbox-org></p>
+      </div>
+      <div class="lightbox__nav">
+        <button type="button" data-lightbox-prev>Previous</button>
+        <button type="button" data-lightbox-next>Next</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ projects: site.projects }}>
+  const lightbox = document.querySelector('[data-lightbox]');
+  const dialog = document.querySelector('[data-lightbox-dialog]');
+  const image = document.querySelector('[data-lightbox-image]');
+  const title = document.querySelector('[data-lightbox-title]');
+  const org = document.querySelector('[data-lightbox-org]');
+  const triggers = [...document.querySelectorAll('[data-project-trigger]')];
+  let activeIndex = 0;
+  let lastFocus = null;
+
+  const render = (index) => {
+    activeIndex = (index + projects.length) % projects.length;
+    const project = projects[activeIndex];
+    image.src = project.image;
+    image.alt = `Screenshot of ${project.title}`;
+    title.textContent = project.title;
+    org.textContent = project.org;
+  };
+
+  const open = (index) => {
+    lastFocus = document.activeElement;
+    render(index);
+    lightbox.hidden = false;
+    document.body.style.overflow = 'hidden';
+    dialog.focus();
+  };
+
+  const close = () => {
+    lightbox.hidden = true;
+    document.body.style.overflow = '';
+    lastFocus?.focus?.();
+  };
+
+  triggers.forEach((trigger) => {
+    trigger.addEventListener('click', () => open(Number(trigger.dataset.index)));
+  });
+
+  lightbox?.querySelectorAll('[data-lightbox-close]').forEach((el) => {
+    el.addEventListener('click', close);
+  });
+
+  document.querySelector('[data-lightbox-prev]')?.addEventListener('click', () => render(activeIndex - 1));
+  document.querySelector('[data-lightbox-next]')?.addEventListener('click', () => render(activeIndex + 1));
+
+  document.addEventListener('keydown', (event) => {
+    if (lightbox?.hidden) return;
+    if (event.key === 'Escape') close();
+    if (event.key === 'ArrowLeft') render(activeIndex - 1);
+    if (event.key === 'ArrowRight') render(activeIndex + 1);
+  });
+</script>
+
+<style>
+  .work__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .work__item {
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+    color: inherit;
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  .work__item img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: calc(var(--radius) + 0.1rem);
+    background: #cad5e2;
+    transition:
+      transform 320ms var(--ease),
+      filter 320ms var(--ease);
+  }
+
+  .work__item:hover img,
+  .work__item:focus-visible img {
+    transform: translateY(-3px);
+    filter: saturate(1.05) contrast(1.02);
+  }
+
+  .work__caption {
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  .work__title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+
+  .work__org {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .lightbox[hidden] {
+    display: none;
+  }
+
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+  }
+
+  .lightbox__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 22, 40, 0.72);
+  }
+
+  .lightbox__dialog {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 58rem);
+    max-height: calc(100svh - 2rem);
+    overflow: auto;
+    background: var(--paper-elevated);
+    border-radius: calc(var(--radius) + 0.2rem);
+    padding: 1rem;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .lightbox__dialog img {
+    width: 100%;
+    border-radius: var(--radius);
+    background: #d7e0ea;
+  }
+
+  .lightbox__meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    margin-top: 0.9rem;
+  }
+
+  .lightbox__meta p {
+    color: var(--muted);
+  }
+
+  .lightbox__close,
+  .lightbox__nav button {
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid var(--line);
+    background: white;
+    border-radius: var(--radius);
+    padding: 0.55rem 0.85rem;
+  }
+
+  .lightbox__close {
+    position: absolute;
+    top: 1.35rem;
+    right: 1.35rem;
+    z-index: 2;
+  }
+
+  .lightbox__nav {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 900px) {
+    .work__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 560px) {
+    .work__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,110 @@
+---
+import { site } from '../data/site';
+---
+
+<section class="section about" id="about" aria-labelledby="about-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-kicker">About</p>
+      <h2 class="section-title" id="about-title">Design systems that scale with the business.</h2>
+    </div>
+
+    <div class="about__grid">
+      <div class="about__copy reveal">
+        {site.summary.map((paragraph) => <p>{paragraph}</p>)}
+        <div class="about__links">
+          <a href={site.links.linkedin} rel="noopener noreferrer" target="_blank">LinkedIn</a>
+          <a href={site.links.github} rel="noopener noreferrer" target="_blank">GitHub</a>
+          <a href={site.links.resume} download>Resume PDF</a>
+        </div>
+      </div>
+
+      <div class="about__skills reveal">
+        <div>
+          <h3>Core expertise</h3>
+          <ul>
+            {site.skills.expertise.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+        <div>
+          <h3>Technical stack</h3>
+          <p class="about__stack">{site.skills.technical.join(' · ')}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about__grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+
+  .about__copy {
+    display: grid;
+    gap: 1.15rem;
+    color: var(--ink-soft);
+  }
+
+  .about__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.4rem;
+    margin-top: 0.5rem;
+    font-weight: 600;
+  }
+
+  .about__skills {
+    display: grid;
+    gap: 1.75rem;
+    padding: 1.5rem;
+    background: rgba(244, 247, 251, 0.72);
+    border: 1px solid var(--line);
+    border-radius: calc(var(--radius) + 0.15rem);
+  }
+
+  .about__skills h3 {
+    font-size: 0.95rem;
+    margin-bottom: 0.85rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+  }
+
+  .about__skills ul {
+    display: grid;
+    gap: 0.45rem;
+  }
+
+  .about__skills li {
+    position: relative;
+    padding-left: 1rem;
+    color: var(--ink-soft);
+  }
+
+  .about__skills li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .about__stack {
+    color: var(--ink-soft);
+    font-size: 0.98rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 860px) {
+    .about__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

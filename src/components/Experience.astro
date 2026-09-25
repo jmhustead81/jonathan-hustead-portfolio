@@ -1,0 +1,99 @@
+---
+import { site } from '../data/site';
+---
+
+<section class="section experience" id="experience" aria-labelledby="experience-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-kicker">Experience</p>
+      <h2 class="section-title" id="experience-title">Two decades of front-end leadership.</h2>
+    </div>
+
+    <ol class="timeline">
+      {
+        site.experience.map((job) => (
+          <li class="timeline__item reveal">
+            <div class="timeline__meta">
+              <p class="timeline__dates">{job.dates}</p>
+              <p class="timeline__place">
+                {job.company} · {job.location}
+              </p>
+            </div>
+            <div class="timeline__body">
+              <h3>{job.role}</h3>
+              <ul>
+                {job.highlights.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .timeline {
+    display: grid;
+    gap: 0;
+  }
+
+  .timeline__item {
+    display: grid;
+    grid-template-columns: minmax(10rem, 16rem) 1fr;
+    gap: 1.5rem 2rem;
+    padding-block: 1.75rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .timeline__item:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .timeline__dates {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+
+  .timeline__place {
+    margin-top: 0.35rem;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  .timeline__body h3 {
+    font-size: 1.35rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .timeline__body ul {
+    display: grid;
+    gap: 0.65rem;
+  }
+
+  .timeline__body li {
+    position: relative;
+    padding-left: 1.1rem;
+    color: var(--ink-soft);
+  }
+
+  .timeline__body li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 0.45rem;
+    height: 0.45rem;
+    background: var(--accent);
+  }
+
+  @media (max-width: 760px) {
+    .timeline__item {
+      grid-template-columns: 1fr;
+      gap: 0.65rem;
+    }
+  }
+</style>

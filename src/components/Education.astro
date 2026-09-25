@@ -1,0 +1,78 @@
+---
+import { site } from '../data/site';
+---
+
+<section class="section education" id="education" aria-labelledby="education-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-kicker">Education</p>
+      <h2 class="section-title" id="education-title">Grounded in systems thinking.</h2>
+    </div>
+
+    <ul class="education__list">
+      {
+        site.education.map((item) => (
+          <li class="reveal">
+            <p class="education__year">{item.year}</p>
+            <div>
+              <h3>
+                {item.degree}
+                <span> · {item.field}</span>
+              </h3>
+              <p>
+                {item.school} · {item.location}
+              </p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .education__list {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .education__list li {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    gap: 1.25rem;
+    align-items: start;
+    padding: 1.25rem 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .education__list li:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .education__year {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--accent-deep);
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  h3 span {
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+
+  li p:last-child {
+    margin-top: 0.35rem;
+    color: var(--muted);
+  }
+
+  @media (max-width: 560px) {
+    .education__list li {
+      grid-template-columns: 1fr;
+      gap: 0.35rem;
+    }
+  }
+</style>

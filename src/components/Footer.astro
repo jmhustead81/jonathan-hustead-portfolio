@@ -1,0 +1,57 @@
+---
+import { site } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div>
+      <p class="site-footer__brand">{site.name}</p>
+      <p class="site-footer__role">{site.title} · {site.location}</p>
+    </div>
+    <nav aria-label="Footer">
+      <a href={site.links.linkedin} rel="noopener noreferrer" target="_blank">LinkedIn</a>
+      <a href={site.links.github} rel="noopener noreferrer" target="_blank">GitHub</a>
+      <a href={site.links.resume} download>Resume</a>
+      <a href="#top">Back to top</a>
+    </nav>
+    <p class="site-footer__copy">© {year} {site.name}. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--line);
+    padding-block: 2.5rem 3rem;
+    background: rgba(244, 247, 251, 0.55);
+  }
+
+  .site-footer__inner {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .site-footer__brand {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.15rem;
+  }
+
+  .site-footer__role,
+  .site-footer__copy {
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem 1.25rem;
+    font-weight: 600;
+  }
+
+  nav a {
+    text-decoration: none;
+  }
+</style>

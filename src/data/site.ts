@@ -47,7 +47,9 @@ export const site = {
     ],
     expertise: [
       'UI/UX Architecture',
+      'Design systems',
       'Micro-Frontends',
+      'Rapid prototyping',
       'ADA Compliance',
       'E-commerce Systems',
       'Analytics & SEO',

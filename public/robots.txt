@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://jonathanhustead.com/sitemap-index.xml
+Host: https://jonathanhustead.com

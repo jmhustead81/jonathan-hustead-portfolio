@@ -1,0 +1,3 @@
+Contact: https://jonathanhustead.com/#contact
+Preferred-Languages: en
+Canonical: https://jonathanhustead.com/

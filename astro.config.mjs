@@ -4,7 +4,13 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://jonathanhustead.com',
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      changefreq: 'monthly',
+      priority: 1,
+      lastmod: new Date(),
+    }),
+  ],
   compressHTML: true,
   build: {
     inlineStylesheets: 'auto',

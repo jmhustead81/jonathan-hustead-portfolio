@@ -1,0 +1,41 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Jonathan Hustead",
+    "documentationUrl": "https://jonathanhustead.com/llms.txt",
+    "logoUrl": "https://jonathanhustead.com/apple-touch-icon.png"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:jonathanhustead.com:portfolio:overview",
+      "displayName": "Jonathan Hustead Portfolio Overview",
+      "type": "text/markdown",
+      "url": "https://jonathanhustead.com/index.md",
+      "description": "Markdown overview of Jonathan Hustead's portfolio, experience, skills, and contact details.",
+      "tags": ["portfolio", "resume", "software-engineer"],
+      "capabilities": ["ProfessionalProfile", "Resume"],
+      "representativeQueries": [
+        "Who is Jonathan Hustead?",
+        "What front-end experience does Jonathan Hustead have?",
+        "How can I contact Jonathan Hustead?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-09-26T00:00:00Z"
+    },
+    {
+      "identifier": "urn:air:jonathanhustead.com:portfolio:llms",
+      "displayName": "llms.txt for jonathanhustead.com",
+      "type": "text/plain",
+      "url": "https://jonathanhustead.com/llms.txt",
+      "description": "Agent-oriented index of portfolio resources.",
+      "tags": ["llms.txt", "discovery"],
+      "capabilities": ["SiteIndex"],
+      "representativeQueries": [
+        "Where is Jonathan Hustead's resume?",
+        "What pages should an agent read on jonathanhustead.com?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-09-26T00:00:00Z"
+    }
+  ]
+}

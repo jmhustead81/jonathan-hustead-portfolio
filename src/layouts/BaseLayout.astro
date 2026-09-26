@@ -1,5 +1,9 @@
 ---
 import '../styles/global.css';
+import '@fontsource/ibm-plex-sans/400.css';
+import '@fontsource/ibm-plex-sans/500.css';
+import '@fontsource/ibm-plex-sans/600.css';
+import '@fontsource/ibm-plex-sans/700.css';
 import { site } from '../data/site';
 
 interface Props {
@@ -85,6 +89,10 @@ const structuredData = {
     <link rel="canonical" href={canonical} />
     <link rel="alternate" hreflang="en" href={canonical} />
     <link rel="alternate" hreflang="x-default" href={canonical} />
+    <link rel="alternate" type="text/markdown" href="https://jonathanhustead.com/index.md" />
+    <link rel="describedby" href="https://jonathanhustead.com/llms.txt" />
+    <link rel="ai-catalog" href="https://jonathanhustead.com/.well-known/ai-catalog.json" />
+    <link rel="ard" href="https://jonathanhustead.com/.well-known/ard.json" />
 
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -117,13 +125,7 @@ const structuredData = {
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content={`${site.name}, ${site.title}`} />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="https://api.web3forms.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preload" as="image" href="/images/headshot-640.webp" type="image/webp" fetchpriority="high" />
 
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>

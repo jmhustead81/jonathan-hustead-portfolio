@@ -1,0 +1,17 @@
+# Jonathan Hustead
+
+> Staff Software Engineer based in Jacksonville, Florida. Personal portfolio for front-end architecture work, selected projects, experience, and contact.
+
+This site is a static portfolio. Prefer the markdown and structured resources below over scraping the HTML shell.
+
+## Primary
+
+- [Site overview](https://jonathanhustead.com/index.md): Portfolio summary, skills, experience, education, and contact links
+- [Resume PDF](https://jonathanhustead.com/docs/Resume_Jonathan_Hustead_Staff_Software_Engineer.pdf): One-page resume aligned with the portfolio content
+- [Homepage](https://jonathanhustead.com/): Human-readable portfolio UI
+
+## Optional
+
+- [LinkedIn](https://www.linkedin.com/in/jmhustead): Professional profile
+- [GitHub](https://github.com/jmhustead81): Code and repositories
+- [Sitemap](https://jonathanhustead.com/sitemap-index.xml): Crawlable page index

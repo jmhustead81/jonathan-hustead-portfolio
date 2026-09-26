@@ -23,7 +23,16 @@ import { site } from '../data/site';
               data-index={index}
               aria-haspopup="dialog"
             >
-              <img src={project.image} alt="" width="640" height="400" loading="lazy" decoding="async" />
+              <img
+                src={project.image.replace('/projects/', '/projects/thumbs/')}
+                srcset={`${project.image.replace('/projects/', '/projects/thumbs/')} 860w, ${project.image} 1280w`}
+                sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
+                alt=""
+                width="860"
+                height="538"
+                loading="lazy"
+                decoding="async"
+              />
               <span class="work__caption">
                 <span class="work__title">{project.title}</span>
                 <span class="work__org">{project.org}</span>

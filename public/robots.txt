@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
 
+Agentmap: https://jonathanhustead.com/.well-known/ai-catalog.json
+
 Sitemap: https://jonathanhustead.com/sitemap-index.xml
 Host: https://jonathanhustead.com

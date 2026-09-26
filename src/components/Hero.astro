@@ -18,9 +18,11 @@ import { site } from '../data/site';
     <figure class="hero__portrait">
       <img
         src={site.headshot.src}
+        srcset={site.headshot.srcSet}
+        sizes={site.headshot.sizes}
         alt={site.headshot.alt}
-        width="480"
-        height="600"
+        width={site.headshot.width}
+        height={site.headshot.height}
         fetchpriority="high"
         decoding="async"
       />

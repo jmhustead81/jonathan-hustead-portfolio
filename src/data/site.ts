@@ -25,8 +25,12 @@ export const site = {
     resume: '/docs/Resume_Jonathan_Hustead_Staff_Software_Engineer.pdf',
   },
   headshot: {
-    src: '/images/headshot.webp',
+    src: '/images/headshot-640.webp',
+    srcSet: '/images/headshot-320.webp 320w, /images/headshot-640.webp 640w',
+    sizes: '(max-width: 820px) 18rem, 16rem',
     alt: 'Portrait of Jonathan Hustead',
+    width: 640,
+    height: 800,
   },
   skills: {
     technical: [

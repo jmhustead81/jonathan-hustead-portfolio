@@ -1,4 +1,6 @@
 ---
+import { site } from '../data/site';
+
 const accessKey =
   import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? 'a78a137a-df4b-4b03-8e67-4c48ba2c4d5e';
 ---
@@ -7,15 +9,15 @@ const accessKey =
   <div class="container contact__layout">
     <div class="section-header reveal">
       <p class="section-kicker">Contact</p>
-      <h2 class="section-title" id="contact-title">Let’s talk about your next platform.</h2>
+      <h2 class="section-title" id="contact-title">{site.contactTitle}</h2>
       <p class="section-lede">
-        Send a note about architecture, UI systems, or collaboration. I typically respond within a few business days.
+        {site.contactLede}
       </p>
     </div>
 
     <form class="contact__form reveal" action="https://api.web3forms.com/submit" method="POST" data-contact-form>
       <input type="hidden" name="access_key" value={accessKey} />
-      <input type="hidden" name="subject" value="Portfolio contact — jonathanhustead.com" />
+      <input type="hidden" name="subject" value="Portfolio contact from jonathanhustead.com" />
       <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
       <input type="hidden" name="from_name" value="Jonathan Hustead Portfolio" />
 
@@ -69,7 +71,7 @@ const accessKey =
       }
 
       form.reset();
-      status.textContent = 'Thanks — your message is on its way.';
+      status.textContent = 'Thanks. Your message is on its way.';
     } catch (error) {
       status.textContent =
         error instanceof Error ? error.message : 'Something went wrong. Please try again.';

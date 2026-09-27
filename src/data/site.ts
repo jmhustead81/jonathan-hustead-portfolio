@@ -14,8 +14,8 @@ export const site = {
   workTitle: 'Projects and product UI',
   workLede:
     'Screenshots from products I have designed or engineered. You will see admin tools and status systems here, plus marketing sites and internal portals.',
-  experienceTitle: 'Experience',
-  educationTitle: 'Education',
+  experienceTitle: 'Where the work has been',
+  educationTitle: 'Where I studied',
   contactTitle: 'Get in touch',
   contactLede:
     'If you want to talk about front-end architecture or a product UI problem, send a message. I usually reply within a few business days.',
